@@ -108,3 +108,4 @@ Route::post('/arrange', [App\Http\Controllers\restaurant::class, 'arrange'])->na
 Route::get('/disablerest/{id}', [App\Http\Controllers\restaurant::class, 'disablerest'])->name('disablerest');
 
 });
+Route::get('/log', [App\Http\Controllers\Auth\LoginController::class, 'log'])->name('log');

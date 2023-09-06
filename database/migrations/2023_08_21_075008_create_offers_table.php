@@ -16,10 +16,14 @@ return new class extends Migration
         Schema::create('offers', function (Blueprint $table) {
             $table->id();
             $table->string("name");
+            $table->string("name_en");
             $table->string("desc");
+            $table->string("desc_en");
             $table->string("beforeprice");
             $table->string("price");
             $table->string("img");
+            $table->string("img2");
+            $table->string("img3");
             $table->boolean("active");
             $table->string("rid");
             $table->timestamps();

@@ -19,6 +19,15 @@
 
     <!-- Scripts -->
     @vite(['public/sass/app.scss', 'public/js/app.js','public/sass/app.css'])
+    <style>
+    .nav-tabs{
+        height:50px;
+
+    }
+    .tab{
+        padding:50px;
+    }
+</style>
 </head>
 <body>
 <div id="mySidebar" class="sidebar">

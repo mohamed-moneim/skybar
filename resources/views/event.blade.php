@@ -2,20 +2,22 @@
 @section('content')
 <div class="container">
 <ul class="nav nav-tabs">
-  <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
-  <li><a data-toggle="tab" href="#create">Create</a></li>
+  <li class="active"><a data-toggle="tab"  class="tab" href="#home">Home</a></li>
+  <li><a data-toggle="tab"  class="tab" href="#create">Create</a></li>
 
-  <li><a data-toggle="tab" href="#update">Update</a></li>
+  <li><a data-toggle="tab"  class="tab" href="#update">Update</a></li>
 </ul>
 
 <div class="tab-content">
   <div id="home"  class="tab-pane fade show active">
     <div class="container mt-5">
-        <table class="table table-bordered mb-5">
+        <table id="tbl" class="table table-bordered mb-5">
             <thead>
                 <tr class="table-success">
                 <th scope="col">Name</th>
+                <th scope="col">Name English</th>
                 <th scope="col">Description</th>
+                <th scope="col">Description English</th>
                 <th scope="col">Date</th>
                 <th scope="col">Img</th>
                 <th scope="col">Video</th>
@@ -28,12 +30,14 @@
                 @foreach($event as $b)
                 <tr>
                 <td>{{ $b->name }}</td>
+                <td>{{ $b->name_en }}</td>
                 <td>{{ $b->desc }}</td>
+                <td>{{ $b->desc_en }}</td>
                 <td>{{ $b->date }}</td>
-                <td><img width="320" src="{{asset('/public/file/'.$b->img) }}" /></td>
+                <td><img width="320" src="{{asset('public/file/'.$b->img) }}" /></td>
                 <td>
                 <video width="320" height="240" controls>
-                  <source src="{{asset('/public/file/'.$b->video) }}">
+                  <source src="{{asset('public/file/'.$b->video) }}">
 </video>
                 
                 </td>
@@ -54,8 +58,12 @@
   <form method="post" action="{{route('uploadevent')}}">
             @csrf
              <div class="form-group">
-    <label for="exampleInputEmail1">Event  Name</label>
+             <label for="exampleInputEmail1">Event  Name </label>
     <input name="name" required type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Company name">
+  </div>
+  <div class="form-group">
+  <label for="exampleInputEmail1">Event  Name English</label>
+    <input name="namee" required type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Company name">
   </div>
   <div class="form-group">
     <label for="exampleInputEmail1">Event  Date</label>
@@ -85,6 +93,11 @@
     <textarea name="description" required type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
 </textarea>
   </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Description English</label>
+    <textarea name="descriptione" required type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+</textarea>
+  </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
         </div>
@@ -103,9 +116,11 @@
                 @endforeach
 
 </select>
-  </div> <div class="form-group">
-    <label for="exampleInputEmail1">Item  Name</label>
+  </div> <div class="form-group">Event   Name</label>
     <input name="name" required type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Company name">
+  </div> <div class="form-group">
+    <label for="exampleInputEmail1">Event  Name English</label>
+    <input name="namee" required type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Company name">
   </div>
   <div class="form-group">
     <label for="exampleInputEmail1">Event  Date</label>
@@ -135,6 +150,11 @@
     <textarea name="description" required type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
 </textarea>
   </div>
+  <div class="form-group">
+  <label for="exampleInputEmail1">Description English</label>
+    <textarea name="descriptione" required type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+</textarea>
+  </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
         </div>
@@ -144,7 +164,7 @@
 <script>
     $(document).ready(function(){
         var profile =  $("#profile").dropzone({ url: "addimg",
-            paramName: "file", // Las imágenes se van a usar bajo este nombre de parámetro
+            paramName: "file", // Las imágenes se van a u{{__('message.curr')}}  bajo este nombre de parámetro
         autoProcessQueue:true,
         required:true,
         acceptedFiles: ".png,.jpg,.gif,.jpeg",
@@ -169,7 +189,7 @@
 <script>
     $(document).ready(function(){
         var profile =  $("#profile2").dropzone({ url: "addimg",
-            paramName: "file", // Las imágenes se van a usar bajo este nombre de parámetro
+            paramName: "file", // Las imágenes se van a u{{__('message.curr')}}  bajo este nombre de parámetro
         autoProcessQueue:true,
         required:true,
         acceptedFiles: ".png,.jpg,.gif,.jpeg",
@@ -190,7 +210,7 @@
 
     });
     var profile =  $("#profile3").dropzone({ url: "addvideo",
-            paramName: "file", // Las imágenes se van a usar bajo este nombre de parámetro
+            paramName: "file", // Las imágenes se van a u{{__('message.curr')}}  bajo este nombre de parámetro
         autoProcessQueue:true,
         required:true,
         acceptedFiles: ".mp4,.mkv,.avi",
@@ -211,7 +231,7 @@
 
     });
     var profile =  $("#profile4").dropzone({ url: "addvideo",
-            paramName: "file", // Las imágenes se van a usar bajo este nombre de parámetro
+            paramName: "file", // Las imágenes se van a u{{__('message.curr')}}  bajo este nombre de parámetro
         autoProcessQueue:true,
         required:true,
         acceptedFiles: ".mp4,.mkv,.avi",
@@ -237,4 +257,9 @@
 </div>
 </div>
 </div>
+<script>
+  $(document).ready( function () {
+    $('#tbl').DataTable();
+} );
+</script>
 @endsection

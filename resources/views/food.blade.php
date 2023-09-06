@@ -2,21 +2,24 @@
 @section('content')
 <div class="container">
 <ul class="nav nav-tabs">
-  <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
-  <li><a data-toggle="tab" href="#create">Create</a></li>
+  <li class="active"><a data-toggle="tab"  class="tab" href="#home">Home</a></li>
+  <li><a data-toggle="tab"  class="tab" href="#create">Create</a></li>
 
-  <li><a data-toggle="tab" href="#update">Update</a></li>
+  <li><a data-toggle="tab"  class="tab" href="#update">Update</a></li>
 </ul>
 
 <div class="tab-content">
   <div id="home"  class="tab-pane fade show active">
     <div class="container mt-5">
-        <table class="table table-bordered mb-5">
+        <table id="tbl" class="table table-bordered mb-5">
             <thead>
                 <tr class="table-success">
                 <th scope="col">Name</th>
                 <th scope="col">Description</th>
+                <th scope="col">Name English</th>
+                <th scope="col">Description English</th>
                 <th scope="col">Price</th>
+
                 <th scope="col">Img</th>
                 <th scope="col">Delete</th>
                 </tr>
@@ -25,7 +28,9 @@
                 @foreach($food as $b)
                 <tr>
                 <td>{{ $b->name }}</td>
+                <td>{{ $b->name_en }}</td>
                 <td>{{ $b->desc }}</td>
+                <td>{{ $b->desc_en }}</td>
                 <td>{{ $b->price }}</td>
                 <td><img style="width:300px;" src="public/file/{{ $b->img }}" /></td>
 
@@ -45,8 +50,12 @@
   <form method="post" action="{{route('uploadfood')}}">
             @csrf
   <div class="form-group">
-    <label for="exampleInputEmail1">Item  Name</label>
+    <label for="exampleInputEmail1">Food   Name</label>
     <input name="name" required type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Company name">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Food   Name English</label>
+    <input name="namee" required type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Company name">
   </div>
   <div class="form-group">
     <label for="exampleInputEmail1">Category </label>
@@ -75,6 +84,11 @@
     <textarea name="description" required type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
 </textarea>
   </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Description English</label>
+    <textarea name="descriptione" required type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+</textarea>
+  </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
         </div>
@@ -83,7 +97,7 @@
 <script>
     $(document).ready(function(){
         var profile =  $("#profile").dropzone({ url: "addimg",
-            paramName: "file", // Las imágenes se van a usar bajo este nombre de parámetro
+            paramName: "file", // Las imágenes se van a u{{__('message.curr')}}  bajo este nombre de parámetro
         autoProcessQueue:true,
         required:true,
         acceptedFiles: ".png,.jpg,.gif,.jpeg",
@@ -119,8 +133,12 @@
 
 </select>
   </div> <div class="form-group">
-    <label for="exampleInputEmail1">Item  Name</label>
+    <label for="exampleInputEmail1">Food  Name</label>
     <input name="name" required type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Company name">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Food  Name English</label>
+    <input name="namee" required type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Company name">
   </div>
   <div class="form-group">
     <label for="exampleInputEmail1">Category </label>
@@ -133,7 +151,7 @@
 </select>
   </div>
   <div class="form-group">
-    <label for="exampleInputEmail1">Item  Price</label>
+    <label for="exampleInputEmail1">  Price</label>
     <input name="price" required type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Company name">
   </div>
   <input type="hidden" id="prof2" name="profile"/>
@@ -149,6 +167,11 @@
     <textarea name="description" required type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
 </textarea>
   </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Description English</label>
+    <textarea name="descriptione" required type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+</textarea>
+  </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
         </div>
@@ -159,7 +182,7 @@
 <script>
     $(document).ready(function(){
         var profile =  $("#profile2").dropzone({ url: "addimg",
-            paramName: "file", // Las imágenes se van a usar bajo este nombre de parámetro
+            paramName: "file", // Las imágenes se van a u{{__('message.curr')}}  bajo este nombre de parámetro
         autoProcessQueue:true,
         required:true,
         acceptedFiles: ".png,.jpg,.gif,.jpeg",
@@ -185,4 +208,9 @@
 </div>
 </div>
 </div>
+<script>
+  $(document).ready( function () {
+    $('#tbl').DataTable();
+} );
+</script>
 @endsection

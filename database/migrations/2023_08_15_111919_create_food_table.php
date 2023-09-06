@@ -16,8 +16,10 @@ return new class extends Migration
         Schema::create('food', function (Blueprint $table) {
             $table->id();
             $table->string("name");
+            $table->string("name_en");
             $table->string("catid");
             $table->string("desc");
+            $table->string("desc_en");
             $table->string("price");
             $table->string("img");
             $table->string("rid");

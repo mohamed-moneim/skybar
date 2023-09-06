@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('tables', function (Blueprint $table) {
             $table->id();
             $table->string("name");
+            $table->string("name_en");
             $table->string("type");
             $table->float("price");
             $table->string("rid");

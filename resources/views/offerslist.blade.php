@@ -1,17 +1,39 @@
 @extends("layouts.app3")
 @section('content')
+<style>
+p{
+  float : left;
+}
+.before{
+  font-weight : bold;
+  font-size : 35px;
+  display :inline;
+
+
+}
+.after{
+  padding-left:20px;
+  display :inline;
+
+}
+  </style>
+
+  <h1 style="margin-top:50px;" class="text-center"> Our Offers </h1>
 @foreach($ev as $e)
 
     <div class="nopadding row">
-<div class="nopadding col-lg-12 text-center">
+<div class="nopadding col-sm-10 text-center ato">
     <a href="#">
-    <div name="{{$e->name}}" id="{{$e->name}}" class="menu col-lg-12 text-center rel">
-    <img class="fl col-lg-12" src="{{asset('public/file/'.$e->img)}}" />
-    <h1 class="cath1">{{$e->name}}</h1>
-    <p class="after">   السعر {{$e->price}} ريال </p>
-    <p class='before'> بدلاً من {{$e->beforeprice}} ريال </p>
+    <div name="{{$e->name}}" id="{{$e->name}}" class="col-sm-12 rel">
+    
+    <img class="fl nono" src="{{asset('public/file/'.$e->img)}}" />
+    <img class="fl nono"  src="{{asset('public/file/'.$e->img2)}}" />
+    <img  class="fl nono" src="{{asset('public/file/'.$e->img3)}}" />
+    <h1 class="cath1 text-left">{{Lang::locale()=="en"?$e->name_en:$e->name}}</h1>
+    <p class="cath1 text-left col-lg-12">{{Lang::locale()=="en"?$e->desc_en:$e->desc}}</p>
+    <p class='before text-left'>{{$e->beforeprice}}    </p>
+    <p class="after text-left"> {{$e->price}}  {{__('message.curr')}} </p>
 
-    <p class="cath1">{{$e->desc}}</p>
     </div>
 </a>  
     </div>

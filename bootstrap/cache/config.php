@@ -211,7 +211,7 @@
       'file' => 
       array (
         'driver' => 'file',
-        'path' => 'C:\\xampp 2nd imp\\htdocs\\sky\\storage\\framework/cache/data',
+        'path' => 'C:\\xampp 2nd imp\\htdocs\\skybar\\storage\\framework/cache/data',
       ),
       'memcached' => 
       array (
@@ -384,13 +384,13 @@
       'local' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\xampp 2nd imp\\htdocs\\sky\\storage\\app',
+        'root' => 'C:\\xampp 2nd imp\\htdocs\\skybar\\storage\\app',
         'throw' => false,
       ),
       'public' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\xampp 2nd imp\\htdocs\\sky\\storage\\app/public',
+        'root' => 'C:\\xampp 2nd imp\\htdocs\\skybar\\storage\\app/public',
         'url' => 'http://localhost/storage',
         'visibility' => 'public',
         'throw' => false,
@@ -410,7 +410,7 @@
     ),
     'links' => 
     array (
-      'C:\\xampp 2nd imp\\htdocs\\sky\\public\\storage' => 'C:\\xampp 2nd imp\\htdocs\\sky\\storage\\app/public',
+      'C:\\xampp 2nd imp\\htdocs\\skybar\\public\\storage' => 'C:\\xampp 2nd imp\\htdocs\\skybar\\storage\\app/public',
     ),
   ),
   'hashing' => 
@@ -496,13 +496,13 @@
       'single' => 
       array (
         'driver' => 'single',
-        'path' => 'C:\\xampp 2nd imp\\htdocs\\sky\\storage\\logs/laravel.log',
+        'path' => 'C:\\xampp 2nd imp\\htdocs\\skybar\\storage\\logs/laravel.log',
         'level' => 'debug',
       ),
       'daily' => 
       array (
         'driver' => 'daily',
-        'path' => 'C:\\xampp 2nd imp\\htdocs\\sky\\storage\\logs/laravel.log',
+        'path' => 'C:\\xampp 2nd imp\\htdocs\\skybar\\storage\\logs/laravel.log',
         'level' => 'debug',
         'days' => 14,
       ),
@@ -554,7 +554,7 @@
       ),
       'emergency' => 
       array (
-        'path' => 'C:\\xampp 2nd imp\\htdocs\\sky\\storage\\logs/laravel.log',
+        'path' => 'C:\\xampp 2nd imp\\htdocs\\skybar\\storage\\logs/laravel.log',
       ),
     ),
   ),
@@ -620,7 +620,7 @@
       'theme' => 'default',
       'paths' => 
       array (
-        0 => 'C:\\xampp 2nd imp\\htdocs\\sky\\resources\\views/vendor/mail',
+        0 => 'C:\\xampp 2nd imp\\htdocs\\skybar\\resources\\views/vendor/mail',
       ),
     ),
   ),
@@ -726,7 +726,7 @@
     'lifetime' => '120',
     'expire_on_close' => false,
     'encrypt' => false,
-    'files' => 'C:\\xampp 2nd imp\\htdocs\\sky\\storage\\framework/sessions',
+    'files' => 'C:\\xampp 2nd imp\\htdocs\\skybar\\storage\\framework/sessions',
     'connection' => NULL,
     'table' => 'sessions',
     'store' => NULL,
@@ -746,9 +746,9 @@
   array (
     'paths' => 
     array (
-      0 => 'C:\\xampp 2nd imp\\htdocs\\sky\\resources\\views',
+      0 => 'C:\\xampp 2nd imp\\htdocs\\skybar\\resources\\views',
     ),
-    'compiled' => 'C:\\xampp 2nd imp\\htdocs\\sky\\storage\\framework\\views',
+    'compiled' => 'C:\\xampp 2nd imp\\htdocs\\skybar\\storage\\framework\\views',
   ),
   'flare' => 
   array (
@@ -823,7 +823,7 @@
     array (
     ),
     'enable_runnable_solutions' => NULL,
-    'remote_sites_path' => 'C:\\xampp 2nd imp\\htdocs\\sky',
+    'remote_sites_path' => 'C:\\xampp 2nd imp\\htdocs\\skybar',
     'local_sites_path' => '',
     'housekeeping_endpoint_prefix' => '_ignition',
     'settings_file_path' => '',

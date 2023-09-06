@@ -2,16 +2,16 @@
 @section('content')
 <div class="container">
 <ul class="nav nav-tabs">
-  <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
-  <li><a data-toggle="tab" href="#create">Create</a></li>
+  <li class="active"><a data-toggle="tab"  class="tab" href="#home">Home</a></li>
+  <li><a data-toggle="tab"  class="tab" href="#create">Create</a></li>
 
-  <li><a data-toggle="tab" href="#update">Update</a></li>
+  <li><a data-toggle="tab"  class="tab" href="#update">Update</a></li>
 </ul>
 
 <div class="tab-content">
   <div id="home"  class="tab-pane fade show active">
     <div class="container mt-5">
-        <table class="table table-bordered mb-5">
+        <table id="tbl" class="table table-bordered mb-5">
             <thead>
                 <tr class="table-success">
                 <th scope="col">Name</th>
@@ -111,4 +111,9 @@
 </div>
 </div>
 </div>
+<script>
+  $(document).ready( function () {
+    $('#tbl').DataTable();
+} );
+</script>
 @endsection

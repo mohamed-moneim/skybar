@@ -25,15 +25,11 @@
 <a href="{{route('addrestaurant')}}">Add Restaurant</a>
 <a  href="{{route('setting')}}">Restaurants</a>
 
-                                    <a href="#"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+<a href="{{route('logout')}}">
                                         Logout
                                     </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
+                             
                                 </div>
                             </li>
 </div>
@@ -82,15 +78,11 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                <a  class="dropdown-item"  href="{{route('logout')}}">
+                                        Logout
                                     </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
+                               
                                 </div>
                             </li>
 
@@ -106,8 +98,8 @@
     </div>
     </div>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-    <script type="text/javascript" src="/dist/cdn.datatables.net_1.13.6_js_jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="/dist/cdnjs.cloudflare.com_ajax_libs_dropzone_5.7.0_min_dropzone.min.js"></script>
+    <script type="text/javascript" src="dist/cdn.datatables.net_1.13.6_js_jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="dist/cdnjs.cloudflare.com_ajax_libs_dropzone_5.7.0_min_dropzone.min.js"></script>
 <script>
 function openNav() {
     if(!$(".sidebar").hasClass("opn")){

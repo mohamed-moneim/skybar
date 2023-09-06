@@ -2,16 +2,16 @@
 @section('content')
 <div class="container">
 <ul class="nav nav-tabs">
-  <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
-  <li><a data-toggle="tab" href="#create">Create</a></li>
+  <li class="active"><a data-toggle="tab"  class="tab" href="#home">Home</a></li>
+  <li><a data-toggle="tab"  class="tab" href="#create">Create</a></li>
 
-  <li><a data-toggle="tab" href="#update">Update</a></li>
+  <li><a data-toggle="tab"  class="tab" href="#update">Update</a></li>
 </ul>
 
 <div class="tab-content">
   <div id="home"  class="tab-pane fade show active">
     <div class="container mt-5">
-        <table class="table table-bordered mb-5">
+        <table id="tbl" class="table table-bordered mb-5">
             <thead>
                 <tr class="table-success">
                 <th scope="col">Name
@@ -42,7 +42,7 @@
 <script>
     $(document).ready(function(){
         var profile =  $("#profile").dropzone({ url: "addimg",
-            paramName: "file", // Las imágenes se van a usar bajo este nombre de parámetro
+            paramName: "file", // Las imágenes se van a u{{__('message.curr')}}  bajo este nombre de parámetro
         autoProcessQueue:true,
         required:true,
         acceptedFiles: ".png,.jpg,.gif,.jpeg",
@@ -67,7 +67,7 @@
 <script>
     $(document).ready(function(){
         var profile =  $("#profile2").dropzone({ url: "addimg",
-            paramName: "file", // Las imágenes se van a usar bajo este nombre de parámetro
+            paramName: "file", // Las imágenes se van a u{{__('message.curr')}}  bajo este nombre de parámetro
         autoProcessQueue:true,
         required:true,
         acceptedFiles: ".png,.jpg,.gif,.jpeg",
@@ -88,7 +88,7 @@
 
     });
     var profile =  $("#profile3").dropzone({ url: "addvideo",
-            paramName: "file", // Las imágenes se van a usar bajo este nombre de parámetro
+            paramName: "file", // Las imágenes se van a u{{__('message.curr')}}  bajo este nombre de parámetro
         autoProcessQueue:true,
         required:true,
         acceptedFiles: ".mp4,.mkv,.avi",
@@ -109,7 +109,7 @@
 
     });
     var profile =  $("#profile4").dropzone({ url: "addvideo",
-            paramName: "file", // Las imágenes se van a usar bajo este nombre de parámetro
+            paramName: "file", // Las imágenes se van a u{{__('message.curr')}}  bajo este nombre de parámetro
         autoProcessQueue:true,
         required:true,
         acceptedFiles: ".mp4,.mkv,.avi",
@@ -135,4 +135,9 @@
 </div>
 </div>
 </div>
+<script>
+  $(document).ready( function () {
+    $('#tbl').DataTable();
+} );
+</script>
 @endsection

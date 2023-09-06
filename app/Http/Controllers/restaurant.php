@@ -77,9 +77,11 @@ class restaurant extends Controller
         $this->validator($request->all())->validate();
         $user = new User();
         $user->name = $request->name;
+        $user->name_en = $request->namee;
         $user->email = $request->email;
         $user->password =  Hash::make($request->password);
         $user->address = $request->address;
+        $user->address_en = $request->addresse;
         $user->mobile = $request->mobile;
         $user->type = $request->type;
         $user->profilepic = $request->profile;
@@ -95,6 +97,7 @@ class restaurant extends Controller
     public function uploadcategory(Request $request){
         $cat = new Category();
         $cat->name = $request->name;
+        $cat->name_en = $request->namee;
         $cat->img = $request->profile;
         $cat->order = $request->order;
         $cat->rid = \Auth::user()->id;
@@ -105,6 +108,7 @@ class restaurant extends Controller
     public function updatecategory(Request $request){
         $cat =  Category::where("id",$request->old)->first();
         $cat->name = $request->name;
+        $cat->name_en = $request->namee;
         $cat->img = $request->profile;
         $cat->order = $request->order;
         $cat->rid = \Auth::user()->id;
@@ -129,8 +133,10 @@ class restaurant extends Controller
     public function uploadfood(Request $request){
         $food  = new food();
         $food->name = $request->name;
+        $food->name_en = $request->namee;
         $food->catid = $request->cat;
         $food->desc = $request->description;
+        $food->desc_en = $request->descriptione;
         $food->img = $request->profile;
         $food->price = $request->price;
         $food->rid = \Auth::user()->id;
@@ -143,6 +149,8 @@ class restaurant extends Controller
         $food->name = $request->name;
         $food->catid = $request->cat;
         $food->desc = $request->description;
+        $food->name_en = $request->namee;
+        $food->desc_en = $request->descriptione;
         $food->img = $request->profile;
         $food->price = $request->price;
         $food->save();
@@ -163,6 +171,8 @@ class restaurant extends Controller
     public function uploadbar(Request $request){
         $food  = new bar();
         $food->name = $request->name;
+        $food->name_en = $request->namee;
+        $food->desc_en = $request->descriptione;
         $food->catid = $request->cat;
         $food->desc = $request->description;
         $food->img = $request->profile;
@@ -175,6 +185,8 @@ class restaurant extends Controller
     public function updatebar(Request $request){
         $food =  bar::where("rid",\Auth::user()->id)->where("id",$request->old)->first();
         $food->name = $request->name;
+        $food->name_en = $request->namee;
+        $food->desc_en = $request->descriptione;
         $food->catid = $request->cat;
         $food->desc = $request->description;
         $food->img = $request->profile;
@@ -196,6 +208,8 @@ class restaurant extends Controller
     public function uploadshisha(Request $request){
         $food  = new shisha();
         $food->name = $request->name;
+        $food->name_en = $request->namee;
+        $food->desc_en = $request->descriptione;
         $food->catid = $request->cat;
         $food->desc = $request->description;
         $food->img = $request->profile;
@@ -208,6 +222,8 @@ class restaurant extends Controller
     public function updateshisha(Request $request){
         $food =  shisha::where("id",$request->old)->first();
         $food->name = $request->name;
+        $food->name_en = $request->namee;
+        $food->desc_en = $request->descriptione;
         $food->catid = $request->cat;
         $food->desc = $request->description;
         $food->img = $request->profile;
@@ -230,6 +246,8 @@ class restaurant extends Controller
         $food  = new events();
         $food->name = $request->name;
         $food->desc = $request->description;
+        $food->name_en = $request->namee;
+        $food->desc_en = $request->descriptione;
         $food->img = $request->profile;
         $food->date = $request->date;
         $food->price = $request->price;
@@ -243,6 +261,8 @@ class restaurant extends Controller
         $food =  events::where("id",$request->old)->first();
         $food->name = $request->name;
         $food->desc = $request->description;
+        $food->name_en = $request->namee;
+        $food->desc_en = $request->descriptione;
         $food->img = $request->profile;
         $food->date = $request->date;
         $food->price = $request->price;
@@ -304,9 +324,13 @@ class restaurant extends Controller
         $tbl  = new offers();
         $tbl->name = $request->name;
         $tbl->desc = $request->description;
+        $tbl->name_en = $request->namee;
+        $tbl->desc_en = $request->descriptione;
         $tbl->price = $request->price;
         $tbl->beforeprice = $request->beforeprice;
         $tbl->img  = $request->profile;
+        $tbl->img2  = $request->img2;
+        $tbl->img3  = $request->img3;
         $tbl->active  = true;
         $tbl->rid  = \Auth::user()->id;
         $tbl->save();
@@ -317,8 +341,12 @@ class restaurant extends Controller
         $tbl =  offers::where("id",$request->old)->first();
         $tbl->name = $request->name;
         $tbl->desc = $request->description;
+        $food->name_en = $request->namee;
+        $food->desc_en = $request->descriptione;
         $tbl->price = $request->price;
         $tbl->img  = $request->profile;
+        $tbl->img2  = $request->img2;
+        $tbl->img3  = $request->img3;
         $tbl->beforeprice = $request->beforeprice;
         $tbl->save();
         return redirect("/offers");
@@ -377,6 +405,7 @@ class restaurant extends Controller
         $setting =  setting::where("rid",$id)->first();
         $social =  social::where("rid",$id)->get();
         $request->session()->put('restid',$id);
+        $request->session()->put('img',$rest->img);
         return view("profile")->with(["rest"=>$rest,"setting"=>$setting,"soc"=>$social]);
 
 
@@ -384,7 +413,9 @@ class restaurant extends Controller
     public function menu($id,$type){
         $cats =  DB::table('categories as c')->where('c.rid',$id)
         ->join('food as f', 'f.catid', '=', 'c.id')->select("c.*")->distinct()->get();
-        return view("menu")->with(["cats"=>$cats,"type"=>$type]);
+        $food =  food::where("rid",$id)->get();
+
+        return view("menu")->with(["cats"=>$cats,"type"=>$type,"food"=>$food]);
     }
     public function barmenu($id,$type){
         $cats =  DB::table('categories as c')->where('c.rid',$id)
@@ -410,8 +441,9 @@ class restaurant extends Controller
     }
 }
 public function eventslist($id){
-    $ev =  events::where("rid",$id)->get();
-    return view("eventslist")->with("ev",$ev);
+    $ev =  events::where("rid",$id)->where("date",">",date("Y-m-d"))->get();
+    $old =  events::where("rid",$id)->where("date","<",date("Y-m-d"))->paginate(10);
+    return view("eventslist")->with(["ev"=>$ev,"old"=>$old]);
 }
 public function getevent($id){
     $ev =  events::where("id",$id)->first();

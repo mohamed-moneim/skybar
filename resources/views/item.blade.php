@@ -1,27 +1,21 @@
 @extends("layouts.app3")
 @section('content')
 <div class="nopadding row">
-<div class="nopadding col-lg-12 text-center">
+<div class="nopadding col-sm-10 text-center ato">
       @foreach($food as $f)
     <img class="fl" src="{{asset('public/file/'.$f->img)}}" />
 
-<table style="margin:50px;" class="table table-borderless">
-            <thead>
-                <tr class="">
-                <th>Name</th>
-                <th >Price </th>
-                </tr>
-            </thead>
+<table id="tbl" style="margin:50px;" class="table table-borderless">
             <tbody>
               <tr>
-              <td>{{$f->name}}</td>
-              <td>{{$f->price}} SAR</td>
+              <td class="text-left"><h4>{{Lang::locale()=="en"?$f->name_en:$f->name}}</h4></td>
+              <td class="text-left after">{{$f->price}} {{__('message.curr')}} </td>
 </tr>
 <tr>
-<td class="text-center" colspan="2">{{$f->desc}}</td>
+<td class="text-left" colspan="2"><p>{{Lang::locale()=="en"?$f->desc_en:$f->desc}}</p></td>
 </tr>
 </tbody>
-<table>
+<table id="tbl">
 @endforeach
 </div>    
 </div>    

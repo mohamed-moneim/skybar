@@ -11,6 +11,10 @@
     <input name="name" required type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Resturant name">
   </div>
   <div class="form-group">
+    <label for="exampleInputEmail1">Restaurant Name English</label>
+    <input name="namee" required type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Resturant name">
+  </div>
+  <div class="form-group">
     <label for="exampleInputEmail1">Restaurant Email</label>
     <input name="email" required type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Resturant Email ">
   </div>
@@ -21,6 +25,10 @@
   <div class="form-group">
     <label for="exampleInputEmail1">Address</label>
     <input name="address" required type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Resturant Address">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Address English</label>
+    <input name="addresse" required type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Resturant Address">
   </div>
   <div class="form-group">
   <label for="exampleInputEmail1">Mobile</label>
@@ -59,7 +67,7 @@
 <script>
     $(document).ready(function(){
         var profile =  $("#profile").dropzone({ url: "addimg",
-            paramName: "file", // Las imágenes se van a usar bajo este nombre de parámetro
+            paramName: "file", // Las imágenes se van a u{{__('message.curr')}}  bajo este nombre de parámetro
         autoProcessQueue:true,
         required:true,
         acceptedFiles: ".png,.jpg,.gif,.jpeg",
@@ -79,23 +87,28 @@
      }
 
     });
+
     var profile =  $("#coverphoto").dropzone({ url: "addimg",
-            paramName: "file", // Las imágenes se van a usar bajo este nombre de parámetro
+            paramName: "file", // Las imágenes se van a u{{__('message.curr')}}  bajo este nombre de parámetro
         autoProcessQueue:true,
         Message: "Drag your image here",
         required:true,
         acceptedFiles: ".png,.jpg,.gif,.jpeg",
         addRemoveLinks: true,
-        maxFiles:1,
-        parallelUploads : 1,
+        maxFiles:10,
+        parallelUploads : 10,
+        uploadMultiple:true,
         maxFilesize:5,
         method: 'post',
         headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}'},
         init: function() {
             this.on("success", function(file, response) {
-
+              if($("#cover").val()==""){
                 $("#cover").val(response);
 
+              }else{
+                $("#cover").val(  $("#cover").val()+","+response);
+              }
 
            }) 
      }
